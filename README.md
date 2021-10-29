@@ -3,6 +3,8 @@
 A [Node-RED](http://nodered.org/) that parses an EML (email) file.
 It basically works as the official [node-red-node-email](https://flows.nodered.org/node/node-red-node-email) input node, accepting a buffer of an EML file as input, instead of fetching it from a mail server.
 
+This node uses the [MailParser](https://nodemailer.com/extras/mailparser/) library, part of the NodeMailer project.
+
 ## Install
 
 Either use the `Node-RED Menu - Manage Palette - Install`, or run the following command in your Node-RED user directory - typically `~/.node-red`

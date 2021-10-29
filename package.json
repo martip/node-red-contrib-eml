@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/martip/node-red-contrib-eml.git"
   },
-  "keywords": [ "node-red" ],
+  "keywords": [ "node-red", "eml", "email" ],
   "author": "",
   "license": "MIT",
   "node-red": {
