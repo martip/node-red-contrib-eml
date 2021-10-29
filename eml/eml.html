@@ -1,0 +1,120 @@
+<script type="text/html" data-template-name="eml">
+  <div class="form-row">
+      <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+      <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script type="text/html" data-help-name="eml">
+  <p>A function that parses the <code>msg.payload</code>, expected to be in EML format, using the <strong>MailParser</strong> library.</p>
+  <p>It basically works as the official <a href="https://flows.nodered.org/node/node-red-node-email">node-red-node-email</a>, accepting a buffer of an EML file as input, instead of fetching it from a mail server.</p>
+  <h3>Inputs</h3>
+  <dl class="message-properties">
+    <dt>payload <span class="property-type">buffer</span></dt>
+    <dd>The buffer of the EML file.</dd>
+  </dl>
+
+  <h3>Outputs</h3>
+
+  <dl class="message-properties">
+    <dt>filename <span class="property-type">string</span></dt>
+    <dd>The name of the EML file.</dd>
+  </dl>
+  <dl class="message-properties">
+    <dt>mimetype <span class="property-type">string</span></dt>
+    <dd>The MIME type of the EML file (<code>message/rfc822</code>).</dd>
+  </dl>
+  <dl class="message-properties">
+    <dt>payload <span class="property-type">string</span></dt>
+    <dd>Th plain text version of message body (if present).</dd>
+  </dl>
+  <dl class="message-properties">
+    <dt>topic <span class="property-type">string</span></dt>
+    <dd>The message subject.</dd>
+  </dl>
+  <dl class="message-properties">
+    <dt>date <span class="property-type">string</span></dt>
+    <dd>The message date in ISO format.</dd>
+  </dl>
+  <dl class="message-properties">
+    <dt>header <span class="property-type">object</span></dt>
+    <dd>The message headers (key, value).</dd>
+  </dl>
+  <dl class="message-properties">
+    <dt>html <span class="property-type">string</span></dt>
+    <dd>The HTML version of message body (if present).</dd>
+  </dl>
+  <dl class="message-properties">
+    <dt>from <span class="property-type">string</span></dt>
+    <dd>The message sender address.</dd>
+  </dl>
+  <dl class="message-properties">
+    <dt>attachments <span class="property-type">array</span></dt>
+    <dd>The array of message attachments.</dd>
+  </dl>
+
+  <h3>Details</h3>
+  <p>Recipients of the message can be found in the <code>msg.header</code> property as arrays:
+    <dl class="message-properties">
+      <dt>msg.header.to.value <span class="property-type">array</span></dt>
+      <dd>The list of <strong>to</strong> recipients.</dd>
+    </dl>
+    <dl class="message-properties">
+      <dt>msg.header.cc.value <span class="property-type">array</span></dt>
+      <dd>The list of <strong>cc</strong> recipients.</dd>
+    </dl>
+    <dl class="message-properties">
+      <dt>msg.header.bcc.value <span class="property-type">array</span></dt>
+      <dd>The list of <strong>bcc</strong> recipients.</dd>
+    </dl>
+  </p>
+  <p>Each recipient is an object with the following properties:</p>
+<pre>
+{
+  name:    // The name of the sender (if present)
+  address: // The email address of the sender
+}
+</pre>
+
+  <p>Any attachments supplied in the incoming email can be found in the <code>msg.attachments</code> property. This will be an array of objects where
+    each object represents a specific attachments. The format of the object is:</p>
+<pre>
+{
+contentType:        // The MIME content description
+fileName:           // A suggested file name associated with this attachment
+transferEncoding:   // How was the original email attachment encodded?
+contentDisposition: // Unknown
+generatedFileName:  // A suggested file name associated with this attachment
+contentId:          // A unique generated ID for this attachment
+checksum:           // A checksum against the data
+length:             // Size of data in bytes
+content:            // The actual content of the data contained in a Node.js Buffer object
+                    // We can turn this into a base64 data string with content.toString('base64')
+}
+</pre>
+  <h3>References</h3>
+
+  <ul>
+    <li><a href="https://nodemailer.com/extras/mailparser/">MailParser</a> - details of the <strong>MailParser</strong> library, part of the <strong>NodeMailer</strong>project</li>
+  </ul>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('eml',{
+      category: 'parser',
+      color:'#DEBD5C',
+      defaults: {
+          name: { value: '' }
+      },
+      inputs: 1,
+      outputs: 1,
+      icon: 'eml.svg',
+      label: function() {
+        return this.name || 'eml' ;
+      },
+      labelStyle: function() {
+        return this.name ? 'node_label_italic' : '';
+      },
+      paletteLabel: 'eml'
+  });
+</script>
