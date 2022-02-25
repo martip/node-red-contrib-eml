@@ -1,6 +1,6 @@
 # node-red-contrib-eml
 
-A [Node-RED](http://nodered.org/) that parses an EML (email) file.
+A [Node-RED](http://nodered.org/) node that parses an EML (email) file.
 It basically works as the official [node-red-node-email](https://flows.nodered.org/node/node-red-node-email) input node, accepting a buffer of an EML file as input, instead of fetching it from a mail server.
 
 This node uses the [MailParser](https://nodemailer.com/extras/mailparser/) library, part of the NodeMailer project.
