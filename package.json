@@ -7,7 +7,7 @@
     "url": "https://github.com/martip/node-red-contrib-eml.git"
   },
   "keywords": [ "node-red", "eml", "email" ],
-  "author": "",
+  "author": "Paolo Martino",
   "license": "MIT",
   "node-red": {
     "nodes": {
